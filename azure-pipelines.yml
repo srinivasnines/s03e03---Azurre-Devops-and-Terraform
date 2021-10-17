@@ -34,7 +34,7 @@ stages:
    - job: Provision
      displayName: 'Provisioning Container Instance'
      pool:
-        vMImage: ubunutu-latest'
+        vMImage: 'ubunutu-latest'
      variables:
       - group: TerraformEnvVars
       steps:
