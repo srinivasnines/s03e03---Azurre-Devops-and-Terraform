@@ -27,22 +27,22 @@ stages:
         command: 'buildAndPush'
         Dockerfile: '**/dockerfile'
         tags: '$(tag)'
--  stage: Provision
-   displayName: "Terrforming on Azure...."
-   depends: Build
-   jobs:
-   - job: Provision
-     displayName: 'Provisioning Container Instance'
-     pool:
-        vMImage: 'ubunutu-latest'
-     variables:
-      - group: TerraformEnvVars
-      steps:
-      - script: |
-           set -e
-           
-           terraform init -input=false
-           terraform apply -input=false -auto-approve
+- stage: Provision
+  displayName: 'Terraforming on Azure...'
+  dependsOn: Build
+  jobs:
+  - job: Provision
+    displayName: 'Provisioning Container Instance'
+    pool:
+      vmImage: 'ubuntu-latest'
+    variables: 
+    - group: TeraformEnvVars
+    steps:
+    - script: |
+        set -e
+        
+        terraform init -input=false
+        terraform apply -input=false -auto-approve
         name: 'RunTerraform'
         displayName: 'Run Terraform'
         env:
