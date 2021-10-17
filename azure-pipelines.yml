@@ -38,7 +38,7 @@ stages:
      variables:
       - group: TerraformEnvVars
       steps:
-      - scripts: |
+      - script: |
            set -e
 
            terraform init -input=false
@@ -50,16 +50,7 @@ stages:
           ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
           ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
           ARM_TENANT_ID: $(ARM_TENANT_ID)
-
-
-setx ARM_TENANT_ID f845842e-ecc0-4ba1-914f-1d0b05eb9d8e
-
-setx ARM_CLIENT_SECRET qn77Q~pAu17NOq1U-xucoOfYd6gafmboUcUlA
-
-setx ARM_SUBSCRIPTION_ID 4b72053c-658d-4365-bbbf-018da39975e1
-
-
-b62ac3b4-798d-4182-98d7-bfeb9008d440
+          TF_VAR_imagebuild: $(tag)
 
 
  
